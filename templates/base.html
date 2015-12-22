@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+    <html>
+
+        <head>
+            <title>{% block title %}Tagony{% endblock %}</title>
+            <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+            {% block head %}{% endblock %}
+        </head>
+
+        <style>
+
+        .highlighter {color:red;}
+        .main {color:blue;}
+        </style>
+
+        <body>
+            <script src="https://code.jquery.com/jquery.js"></script>
+            <!--Later, I'll put some bootstrap here to look nice-->
+
+           <div class="highlight"><pre><span class="my_html">&lt;html&gt;</span><span class="my_head">&lt;head&gt;</span><span class="my_title">&lt;title&gt;</span>Test<span class="my_title">&lt;/title&gt;</span><span class="my_head">&lt;/head&gt;</span><span class="my_body">&lt;body&gt;</span><span class="my_h1">&lt;h1&gt;</span><span class="my_poop">&lt;poop&gt;</span><span class="my_img">&lt;img src="blah.jpg" /&gt;</span>Parse me!<span class="my_poop">&lt;/poop&gt;</span><span class="my_p">&lt;p&gt;</span>Kayla Paragraph<span class="my_p">&lt;/p&gt;</span><span class="my_h1">&lt;/h1&gt;</span><span class="my_body">&lt;/body&gt;</span><span class="my_html">&lt;/html&gt;</span></pre></div>
+
+            <div class="uclick" id="my_h1">h1</div>
+            <div class="uclick" id="my_p">p</div>
+            <div class="uclick" id="my_poop">poop</div>
+
+            <script>
+
+            $(function(){
+                $(".uclick").click(function(event){
+                    console.log(event.target.id)
+                    $("." + event.target.id).toggleClass("highlighter");
+                    $("#" + event.target.id).toggleClass("highlighter");
+
+                });
+            });
+
+            </script>
+
+        {% block body %}{% endblock %}
+        </body>
+    </html>
