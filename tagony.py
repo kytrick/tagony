@@ -8,6 +8,10 @@ import json
 import requests
 
 
+
+
+
+
 # create a subclass and override the handler methods
 class MyHTMLParser(HTMLParser):
 
@@ -94,23 +98,49 @@ class MyHTMLParser(HTMLParser):
     def unknown_decl(self, decl):
         self.augmented_html += decl
 
-p = '<html><head><title>Test</title></head><body><h1><poop><img src="blah.jpg" />Parse me!</poop><p>Kayla Paragraph</p></h1></body></html>'
-p1 = '<!DOCTYPE html>&gt;&gt;&gt;&#38;<html><!-- I am a comment --><head><title>Test</title></head><body><h1><img src="blah.jpg" />Parse me!</h1></body></html>'
-p2 = requests.get('http://pygments.org/docs/quickstart/').text
-p3 = '<html><p>beep</p></html>'
-p4 = requests.get('http://dev.w3.org/html5/html-author/charref').text
+
+# def fetch_html_from_url(input_url):
+#     # print input_url
+#     # need to handle for bad inputs
+#     return requests.get(input_url).text
+
+
+def get_parsed_data(input_url):
+    parser = MyHTMLParser()
+    data = requests.get(input_url).text
+    parser.feed(data)
+    return parser
+
+
+    #return (parser.get_output(), parser.TagCounter.most_common())
+
+
+# def generate_css_from_tags(CounterDictionary):
+#     # this could use some neatening up (line breaks)
+#     my_css = ""
+#     ranking = parser.TagCounter.most_common()
+#     prepend = '<div class="uclick" id="my_'
+#     midpend = '">'
+#     postpend = '</div>'
+#     for rank in ranking:
+#         my_css += str(rank[1]) + prepend + rank[0] + midpend + rank[0] + postpend +'\n'
+#     return my_css
+
+
+
+
 
 # instantiate the parser and feed it some HTML
 parser = MyHTMLParser()
-parser.feed(p)
-print parser.get_output()
+# parser.feed(p)
+# print parser.get_output()
 
-print "======================="
+# print "======================="
 
-def colorized_html_generator(urltext):
-    """
-    This is pygments. Using for comparison with my augmented html generator
-    """
-    return highlight(urltext, HtmlLexer(), HtmlFormatter())
+# def colorized_html_generator(urltext):
+#     """
+#     This is pygments. Using for comparison with my augmented html generator
+#     """
+#     return highlight(urltext, HtmlLexer(), HtmlFormatter())
 
-print colorized_html_generator(p)
+# print colorized_html_generator(p)
