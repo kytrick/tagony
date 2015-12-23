@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+    <script>
+
+    $(function(){
+        $(".uclick").click(function(event){
+            console.log(event.target.id)
+            $("." + event.target.id).toggleClass("highlighter");
+            $("#" + event.target.id).toggleClass("highlighter");
+        });
+    });
+
+    </script>
+
+{% endblock %}
