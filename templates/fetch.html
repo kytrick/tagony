@@ -3,20 +3,32 @@
 {% block head %}
 {% endblock %}
 
+
 {% block body %}
 
     <!-- this now has access to augmented_html and freqtionary -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="http://www.w3schools.com/w3css/w3-theme-teal.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    
-     <div>{{augmented_html|safe}}</div>  <!-- safe is so jinja doesn't escape my html -->
+    <div class="w3-container">
+    <div class="w3-center">
+      <h2>maybe put url here</h2>
+    </div>
 
-     <ul>
-     {% for taginfo in freqtionary %}
-        <li><div class="uclick" id="my_{{taginfo[0]}}">{{taginfo[1]}}:{{taginfo[0]}}</div></li>
-     {% endfor %}    
-     </ul>
+    <div class="w3-row">
+      <div class="w3-col w3-container m2 w3-blue-grey "><p>
+        <ul>
+            {% for taginfo in freqtionary %}
+            <li><div class="uclick" id="my_{{taginfo[0]}}">{{taginfo[1]}}:{{taginfo[0]}}</div></li>
+            {% endfor %}    
+        </ul>
+      </div>
 
-   
+      <div class="w3-col w3-container m10 w3-grey">
+      {{augmented_html|safe}} <!--safe is so jinja doesn't escape my html -->
+      </div>
 
     <script>
 

@@ -1,5 +1,11 @@
 <!DOCTYPE html>
     <html>
+ 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/lib/w3.css">
+        <link rel="stylesheet" href="w3-theme-teal.css">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+       
 
         <head>
             <title>{% block title %}Tagony{% endblock %}</title>
@@ -10,11 +16,15 @@
         <style>
 
         .highlighter {color:red;}
-        .main {color:blue;}
+        .main {color:blue;} 
+  
+    
+
         </style>
 
         <body>
             <script src="https://code.jquery.com/jquery.js"></script>
+    
 
         <form action="/fetch">
             <input type="text" id="input_url" placeholder="enter URL here" name="input_url"><input type="submit">
@@ -22,4 +32,7 @@
 
         {% block body %}{% endblock %}
         </body>
+        
+
+        
     </html>
