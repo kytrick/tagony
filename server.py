@@ -1,10 +1,12 @@
 """Tagony: Slack coding challenge"""
 
-from flask import Flask, render_template, request
-from tagony import *
+from flask import Flask, render_template, request, flash, get_flashed_messages
+from tagony import get_parsed_data, FetchDataException
+
 
 app = Flask(__name__)
-app.config['PROPAGATE_EXCEPTIONS'] = True 
+app.config['PROPAGATE_EXCEPTIONS'] = True
+app.config['SECRET_KEY'] = "8675309"
 
 
 @app.route('/')
@@ -15,10 +17,16 @@ def index():
 @app.route('/fetch')
 def fetch():
     input_url = request.args.get('input_url')
-    parsed_data = get_parsed_data(input_url)
+    try:
+        parsed_data = get_parsed_data(input_url)
+        augmented_html = parsed_data.get_output()
+        freqtionary = parsed_data.TagCounter.most_common()
+    except FetchDataException as e:
+        augmented_html = ""  # can also set this to e
+        freqtionary = {}
+        flash(str(e))
+        flash(str(e))
 
-    augmented_html = parsed_data.get_output()
-    freqtionary = parsed_data.TagCounter.most_common()
 
     return render_template('fetch.html', input_url=input_url,
                            augmented_html=augmented_html,

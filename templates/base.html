@@ -4,8 +4,9 @@
 
         <style>
 
-        .highlighter {color:indigo; line-break:normal; white-space:wrap; wrap:;} 
+        .highlighter {color:orange; line-break:normal; white-space:wrap; wrap:;} 
         .highlighter-dim {color:purple; line-break:normal; white-space:wrap; wrap:;} 
+        .flash { background: #f0d6d6; padding: 0.5em; border: 1px solid #aacbe2; list-style-type:none}
 
         
         </style>
@@ -23,6 +24,10 @@
             <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
             <link rel="stylesheet" href="http://www.w3schools.com/w3css/w3-theme-teal.css">
             <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+
+
 
             <script src="https://code.jquery.com/jquery.js"></script>
     
@@ -44,6 +49,17 @@
                 <div class="w3-row">
                     <div class="w3-col w3-container m10 w3-grey" wrap="soft" style="margin-left:20%">
                         {{augmented_html|safe}} <!--safe is so jinja doesn't escape my html -->
+
+                        {% with messages = get_flashed_messages() %}
+                          {% if messages %}
+                            <ul class=flash>
+                            {% for message in messages %}
+                              <li>{{ message }} </li>
+                            {% endfor %}
+                            </ul>
+                          {% endif %}
+                        {% endwith %}
+
                     </div>
                 </div>
             </div>

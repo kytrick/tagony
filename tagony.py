@@ -2,6 +2,11 @@
 from collections import Counter
 from HTMLParser import HTMLParser
 import requests
+#from requests import ConnectionError
+#from requests.exceptions import MissingSchema, Timeout, ConnectionError
+import requests.exceptions 
+
+from requests.exceptions import *
 # from markupsafe import escape
 from cgi import escape  # https://wiki.python.org/moin/EscapingHtml
 
@@ -111,10 +116,25 @@ def get_parsed_data(input_url):
     parser.feed(data)
     return parser
 
+
+class FetchDataException(Exception):
+    def __init__(self, e):
+        # send the error object up the stack
+        self.e = e
+
+    def __str__(self):
+        return repr(self.e)
+
+
 def fetch_data(input_url):
 
     clean_url = clean_my_url(input_url)
-    data = requests.get(clean_url).text
+
+    try:
+        data = requests.get(clean_url).text
+    except Exception as e:
+        raise FetchDataException(e)
+
     return data
 
 
