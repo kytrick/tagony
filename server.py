@@ -4,6 +4,7 @@ from flask import Flask, render_template, request
 from tagony import *
 
 app = Flask(__name__)
+app.config['PROPAGATE_EXCEPTIONS'] = True 
 
 
 @app.route('/')
