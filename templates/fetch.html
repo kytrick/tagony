@@ -16,6 +16,11 @@
             $("." + event.target.id).toggleClass("highlighter");
             $("#" + event.target.id).toggleClass("highlighter");
         });
+        $(".uclick").hover(function(event){
+            console.log(event.target.id)
+            $("." + event.target.id).toggleClass("highlighter-dim");
+            $("#" + event.target.id).toggleClass("highlighter-dim");
+        });
     });
 
     </script>
