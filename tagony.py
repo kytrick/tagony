@@ -1,14 +1,9 @@
-from pygments import highlight
-from pygments.lexers import HtmlLexer
-from pygments.formatters import HtmlFormatter
+
 from collections import Counter
-from htmlentitydefs import name2codepoint
 from HTMLParser import HTMLParser
-import json
 import requests
-from markupsafe import escape
-from cgi import escape # https://wiki.python.org/moin/EscapingHtml
-import re
+# from markupsafe import escape
+from cgi import escape  # https://wiki.python.org/moin/EscapingHtml
 
 
 # create a subclass and override the handler methods
