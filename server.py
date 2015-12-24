@@ -25,8 +25,6 @@ def fetch():
         augmented_html = ""  # can also set this to e
         freqtionary = {}
         flash(str(e))
-        flash(str(e))
-
 
     return render_template('fetch.html', input_url=input_url,
                            augmented_html=augmented_html,

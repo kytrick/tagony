@@ -4,11 +4,10 @@
 
         <style>
 
-        .highlighter {color:orange; line-break:normal; white-space:wrap; wrap:;} 
-        .highlighter-dim {color:purple; line-break:normal; white-space:wrap; wrap:;} 
-        .flash { background: #f0d6d6; padding: 0.5em; border: 1px solid #aacbe2; list-style-type:none}
-
-        
+        .highlighter {color:orange; line-break:normal; white-space:wrap;} 
+        .highlighter-dim {color:purple; line-break:normal; white-space:wrap;} 
+        .flash {background: #f0d6d6; padding: 0.5em; border: 1px solid #aacbe2; list-style-type:none;}
+        .nodot {list-style-type:none;}
         </style>
        
 
@@ -23,11 +22,6 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
             <link rel="stylesheet" href="http://www.w3schools.com/w3css/w3-theme-teal.css">
-            <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-
-
-
-
 
             <script src="https://code.jquery.com/jquery.js"></script>
     
@@ -37,9 +31,9 @@
                     <input type="text" class="w3-input" id="input_url" placeholder="enter URL here" name="input_url" ><input type="submit">
                 </form>
 
-                <ul> <!--using jinja to build my css  -->
+                <ul class=nodot> <!--using jinja to build my css  -->
                     {% for taginfo in freqtionary %}
-                    <li><div class="uclick" id="my_{{taginfo[0]}}">{{taginfo[1]}}:{{taginfo[0]}}</div></li>
+                    <li><div class="uclick" id="my_{{taginfo[0]}}">{{taginfo[1]}}: {{taginfo[0]}}</div></li>
                     {% endfor %}    
                 </ul> 
 
