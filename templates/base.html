@@ -28,9 +28,7 @@
     
             <nav class="w3-sidenav w3-blue-grey" style="width:20%">
                 
-                <form action="/fetch" class="w3-container w3-text-grey">
-                    <input type="text" class="w3-input" id="input_url" placeholder="enter URL here" name="input_url" ><input type="submit">
-                </form>
+
 
                 <ul class=nodot> <!--using jinja to build my css  -->
                     {% for taginfo in freqtionary %}
@@ -42,9 +40,14 @@
 
             <div class="w3-container">
                 <div class="w3-row">
+                    
                     <div class="w3-col w3-container m9 w3-teal break-word" wrap="soft" style="margin-left:20%">
-                            Source for: {{input_url}}
+                        <form action="/fetch" class="w3-container m9 w3-text-grey">
+                            <input type="text" class="w3-input" id="input_url" placeholder= "please enter url" name="input_url">
+                            <input type="submit">
+                        </form>
                     </div>
+
                     <div class="w3-col w3-container m9 w3-grey break-word" wrap="soft" style="margin-left:20%">
                         {{augmented_html|safe}} <!--safe is so jinja doesn't escape my html -->
 
