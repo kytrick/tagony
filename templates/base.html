@@ -8,6 +8,7 @@
         .highlighter-dim {color:purple; line-break:normal; white-space:wrap;} 
         .flash {background: #f0d6d6; padding: 0.5em; border: 1px solid #aacbe2; list-style-type:none;}
         .nodot {list-style-type:none;}
+        .break-word{word-wrap: break-word};
         </style>
        
 
@@ -41,7 +42,10 @@
 
             <div class="w3-container">
                 <div class="w3-row">
-                    <div class="w3-col w3-container m10 w3-grey" wrap="soft" style="margin-left:20%">
+                    <div class="w3-col w3-container m9 w3-teal break-word" wrap="soft" style="margin-left:20%">
+                            Source for: {{input_url}}
+                    </div>
+                    <div class="w3-col w3-container m9 w3-grey break-word" wrap="soft" style="margin-left:20%">
                         {{augmented_html|safe}} <!--safe is so jinja doesn't escape my html -->
 
                         {% with messages = get_flashed_messages() %}
