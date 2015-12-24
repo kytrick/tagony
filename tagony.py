@@ -80,6 +80,8 @@ class MyHTMLParser(HTMLParser):
         self.augmented_html += tempstring
 
     def handle_decl(self, data):
+        tag = "decl"
+        self.TagCounter[tag] += 1
         # print "Decl     :", data
         tempstring = '<span class="my_decl">' + '&lt;!' + escape(data) + '&gt;</span>'
         # print tempstring
@@ -95,6 +97,8 @@ class MyHTMLParser(HTMLParser):
         self.augmented_html += escape(data)
 
     def unknown_decl(self, decl):
+        tag = "decl"
+        self.TagCounter[tag] += 1
         # need to escape
         self.augmented_html += escape(decl)
 
