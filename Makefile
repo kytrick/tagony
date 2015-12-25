@@ -19,11 +19,11 @@
 
 
 .PHONY: all
-all: pip-compile requirements 
+all: pip-tools requirements 
 
-.PHONY: pip-compile
-pip-compile:
-	@pip-compile --help > /dev/null 2>&1 || (pip install --upgrade pip && pip install pip-tools)
+.PHONY: pip-tools
+pip-tools:
+	@pip show pip-tools > /dev/null 2>&1 || (pip install --upgrade pip && pip install pip-tools)
 
 .PHONY: prod
 prod: all
