@@ -2,11 +2,13 @@
 
 from flask import Flask, render_template, request, flash
 from tagony import get_parsed_data, FetchDataException
-
+import os
 
 app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS'] = True
-app.config['SECRET_KEY'] = "8675309"
+
+if 'SECRET_KEY' in os.environ:
+    app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 
 
 @app.route('/')
@@ -32,4 +34,6 @@ def fetch():
 
 if __name__ == "__main__":
         app.debug = True
+        app.config['SECRET_KEY'] = os.urandom(16)
         app.run()
+
