@@ -30,7 +30,7 @@ class MyHTMLParser(HTMLParser):
             # conditional protects against trying to cast None as unicode
             if attr[1] is None:
                 attr = (attr[0], '')
-            attr_string += ' ' + attr[0] + '="' + attr[1] + '"'
+            attr_string += escape(' ' + attr[0] + '="' + attr[1] + '"')
 
         # generate start tag string that includes attrs.
         tempstring = '<span class="my_' + tag + '">&lt;' + tag + attr_string + '&gt;</span>'
@@ -52,10 +52,11 @@ class MyHTMLParser(HTMLParser):
         for attr in attrs:
             if attr[1] is None:
                 attr = (attr[0], '')
-            attr_string = attr_string + ' ' + attr[0] + '=' + '"' + attr[1] + '"'
+            attr_string += escape(' ' + attr[0] + '="' + attr[1] + '"')
 
         # generate start tag string that includes attrs.
         tempstring = '<span class="my_' + tag + '">&lt;' + tag + attr_string + ' /&gt;</span>'
+
         self.augmented_html += tempstring
 
     def handle_entityref(self, name):
