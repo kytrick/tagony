@@ -1,1 +1,1 @@
-web: gunicorn tagony:app
+web: gunicorn server:app
