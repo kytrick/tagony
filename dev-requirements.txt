@@ -18,10 +18,14 @@ docopt==0.6.2             # via awsebcli
 docutils==0.12            # via botocore
 first==2.0.1              # via pip-tools
 flake8==2.5.1
+flask==0.10.1
 gnureadline==6.3.3        # via ipython
 ipython-genutils==0.1.0   # via traitlets
 ipython==4.0.1
+itsdangerous==0.24        # via flask
+jinja2==2.8               # via flask
 jmespath==0.9.0           # via botocore
+markupsafe==0.23          # via jinja2
 mccabe==0.3.1             # via flake8
 path.py==8.1.2            # via pickleshare
 pathspec==0.3.3           # via awsebcli
@@ -30,16 +34,15 @@ pep8==1.5.7               # via flake8
 pexpect==4.0.1            # via ipython
 pickleshare==0.5          # via ipython
 pip-tools==1.4.2
-pipreq==0.4
 ptyprocess==0.5           # via pexpect
 pyflakes==1.0.0           # via flake8
-pygments==2.0.2
 python-dateutil==2.4.2    # via botocore
 pyyaml==3.11              # via awsebcli
-requests==2.6.2           # via awsebcli, docker-py
+requests==2.6.2
 simplegeneric==0.8.1      # via ipython
 six==1.10.0               # via docker-py, dockerpty, pip-tools, python-dateutil, websocket-client
 texttable==0.8.4          # via awsebcli
 traitlets==4.0.0          # via ipython
 wcwidth==0.1.5            # via blessed
 websocket-client==0.34.0  # via awsebcli, docker-py
+werkzeug==0.11.3          # via flask
