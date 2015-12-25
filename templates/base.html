@@ -55,7 +55,7 @@
         <div class="w3-row">
             <div class="w3-col w3-container m9 w3-teal break-word" wrap="soft" style="margin-left:20%">
                 <form action="/fetch" class="w3-container m9 w3-text-grey">
-                    <input type="text" class="w3-input" id="input_url" placeholder="please enter url" name="input_url" autofocus>
+                    <input type="text" class="w3-input" id="input_url" placeholder={% if input_url is defined%}{{input_url}}{% else %} "please enter a url"{% endif %} name="input_url" autofocus>
                     <input type="submit" style="display:none">
                 </form>
             </div>
