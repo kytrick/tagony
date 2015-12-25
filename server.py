@@ -1,6 +1,6 @@
 """Tagony: Slack coding challenge"""
 
-from flask import Flask, render_template, request, flash, get_flashed_messages
+from flask import Flask, render_template, request, flash
 from tagony import get_parsed_data, FetchDataException
 
 
