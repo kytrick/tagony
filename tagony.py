@@ -124,7 +124,10 @@ class ContentTypeException(Exception):
 def fetch_data(input_url):
     clean_url = clean_my_url(input_url)
 
-    checkhead = requests.head(clean_url)
+    try:
+        checkhead = requests.head(clean_url)
+    except Exception as e:
+        raise FetchDataException(e)
 
     if "text/html" in checkhead.headers.get('content-type'):
         try:
