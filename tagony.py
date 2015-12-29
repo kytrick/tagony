@@ -111,13 +111,29 @@ class FetchDataException(Exception):
         return repr(self.e)
 
 
+class ContentTypeException(Exception):
+    def __init__(self, e):
+        # send the error object up the stack
+        self.e = e
+
+    def __str__(self):
+        return "URL: %s Invalid Content-Type: %s, must be text/html" % (
+                self.e.url, self.e.headers.get('content-type'))
+
+
 def fetch_data(input_url):
     clean_url = clean_my_url(input_url)
-    try:
-        data = requests.get(clean_url).text
-    except Exception as e:
-        raise FetchDataException(e)
-    return data
+
+    checkhead = requests.head(clean_url)
+
+    if "text/html" in checkhead.headers.get('content-type'):
+        try:
+            data = requests.get(clean_url).text
+        except Exception as e:
+            raise FetchDataException(e)
+        return data
+    else:
+        raise ContentTypeException(checkhead)
 
 
 def clean_my_url(input_url):

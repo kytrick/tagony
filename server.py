@@ -1,7 +1,7 @@
 """Tagony: Slack coding challenge"""
 
 from flask import Flask, render_template, request, flash
-from tagony import get_parsed_data, FetchDataException
+from tagony import get_parsed_data, FetchDataException, ContentTypeException
 import os
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ def fetch():
         parsed_data = get_parsed_data(input_url)
         augmented_html = parsed_data.get_output()
         freqtionary = parsed_data.TagCounter.most_common()
-    except FetchDataException as e:
+    except (FetchDataException, ContentTypeException) as e:
         augmented_html = ""  # can also set this to e
         freqtionary = {}
         flash(str(e))
@@ -36,4 +36,3 @@ if __name__ == "__main__":
         app.debug = True
         app.config['SECRET_KEY'] = os.urandom(16)
         app.run()
-
