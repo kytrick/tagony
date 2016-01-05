@@ -2,6 +2,7 @@
 from collections import Counter
 from HTMLParser import HTMLParser
 import requests
+from urlparse import urlparse
 
 
 # from markupsafe import escape
@@ -125,27 +126,27 @@ def fetch_data(input_url):
     clean_url = clean_my_url(input_url)
 
     try:
-        checkhead = requests.head(clean_url)
+        head = requests.head(clean_url)
     except Exception as e:
         raise FetchDataException(e)
 
-    if "text/html" in checkhead.headers.get('content-type'):
+    if head.headers.get('content-type') == "text/html":
         try:
             data = requests.get(clean_url).text
         except Exception as e:
             raise FetchDataException(e)
         return data
     else:
-        raise ContentTypeException(checkhead)
+        raise ContentTypeException(head)
 
 
 def clean_my_url(input_url):
     ''' this function does some sanity checking on the input url before giving
         it to get_parsed_data
     '''
+    parsed_url = urlparse(input_url)
 
-    # did the user forget the http:// ?
-    if input_url.find('://') < 0:
-        input_url = 'http://' + input_url
+    if parsed_url.scheme == '':
+        input_url = 'http://' + ''.join(parsed_url[1:])
 
     return input_url
