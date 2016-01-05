@@ -3,6 +3,7 @@ from collections import Counter
 from HTMLParser import HTMLParser
 import requests
 from urlparse import urlparse
+from werkzeug.http import parse_options_header
 
 
 # from markupsafe import escape
@@ -130,7 +131,9 @@ def fetch_data(input_url):
     except Exception as e:
         raise FetchDataException(e)
 
-    if head.headers.get('content-type') == "text/html":
+    content_type, options = parse_options_header(head.headers.get('content-type'))
+
+    if content_type == "text/html":
         try:
             data = requests.get(clean_url).text
         except Exception as e:
